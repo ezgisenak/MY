@@ -1,0 +1,11 @@
+{
+  "username": "postgres",
+  "password": "Ezgi.14",
+  "database": "postgres",
+  "host": "localhost",
+  "dialect": "postgres",
+  "define" : {
+  "timestamps" : false,
+  "paranoid" : false
+  }
+}
