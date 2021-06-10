@@ -6,6 +6,8 @@ const { User } = require('../models');
 require('dotenv').config();
 const authenticationRouter = require('../middlewares/auth');
 const crypto = require('crypto');
+const validatePassword = require('../validation/validatePassword');
+
 //TODO 
 router.use('/:id/orders', (req, res, next) => {
   req.custom = req.params.id;
@@ -59,6 +61,9 @@ router.put('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   const { user_name, email, role } = req.body;
   let {password} = req.body;
+
+const validPassword = validatePassword(password);
+if(validPassword){
   try {  
     password = crypto.createHash('md5').update(password).digest('hex');
     const user = await User.create({ user_name, email, role, password});
@@ -70,6 +75,12 @@ router.post('/', async (req, res) => {
   } catch (err) {
     console.error(err.message);
   }
+}
+else{
+  res.send('Invalid Password!');
+}
+
+  
 });
 
 // //TODO
