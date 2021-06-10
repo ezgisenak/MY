@@ -1,6 +1,6 @@
 {
   "name": "my",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "make-model": "npx sequelize-cli model:generate --name user --attributes user_name:string,email:string",
